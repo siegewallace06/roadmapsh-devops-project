@@ -16,7 +16,7 @@ awk '{print $7}' "$LOG_FILE" | sort | uniq -c | sort -nr | head -n 5 | awk '{pri
 echo ""
 
 echo "Top 5 response status codes:"
-awk '{print $9}' "$LOG_FILE" | sort | uniq -c | sort -nr | head -n 5 | awk '{print $2, "-", $1, "requests"}'
+awk '{print $9}' "$LOG_FILE" | grep -E '^[0-9]{3}$' | sort | uniq -c | sort -nr | head -n 5 | awk '{print $2, "-", $1, "requests"}'
 echo ""
 
 echo "Top 5 user agents:"
